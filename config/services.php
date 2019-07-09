@@ -49,7 +49,7 @@ return [
     'facebook' => [
      'client_id' => '378415669692721',
      'client_secret' => 'f4f7218fef12beeae8fb14f8d5902323',
-     'redirect' => 'https://8beaaa47.ngrok.io/oauth/token',
+     'redirect' => 'https://9e50d025.ngrok.io',
    ],
 
 ];

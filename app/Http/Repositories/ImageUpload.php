@@ -14,7 +14,7 @@ class ImageUpload
 {
     public function imageUpload($file, $path){
 
-        $fileContents = $this->url_get_contents($file);
+        $fileContents = $this->file_get_contents($file);
 
         $imageName =  date('mdYHis'). ".jpg";
         File::put(public_path() . $path . $imageName, $fileContents);
