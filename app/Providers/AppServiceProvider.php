@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 
-use App\Services\SocialUserResolver;
+use App\Http\Repositories\SocialUserResolver;
 use Coderello\SocialGrant\Resolvers\SocialUserResolverInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;

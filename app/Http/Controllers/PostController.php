@@ -4,8 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Post;
+use App\Http\Resources\PostResource;
+use App\Http\Repositories\PostRepository;
 class PostController extends Controller
 {
+
+
+    protected $post;
+    protected $postRepository;
+
+    public function __construct(PostRepository $postRepository)
+    {
+        $this->post = new Post();
+        $this->postRepository = $postRepository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +28,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $query = $this->postRepository->getAllPostWithUser();
+        return PostResource::collection($query);
     }
 
     /**

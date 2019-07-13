@@ -20,7 +20,11 @@ class CreatePostsTable extends Migration
             $table->string('cover_pic');
             $table->timestamps();
         });
+
+
     }
+
+
 
     /**
      * Reverse the migrations.
