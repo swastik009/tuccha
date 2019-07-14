@@ -15,9 +15,9 @@ class ImageUpload
     public function uploader($file, $path = '/img/'){
         $fileContents = file_get_contents($file);
         $imageName =  $path . date('mdYHis'). ".jpg";
-        $imageURL = url($imageName); //save data in full site url
+        //$imageURL = url($imageName); //save data in full site url
         File::put(public_path().$imageName, $fileContents); //puts in public folder
-        return $imageURL;
+        return $imageName;
     }
 
 //
