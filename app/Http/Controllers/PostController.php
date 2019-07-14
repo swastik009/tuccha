@@ -16,6 +16,7 @@ class PostController extends Controller
 
     public function __construct(PostRepository $postRepository)
     {
+       $this->middleware('auth:api')->only(['store ','update','destroy']);
         $this->post = new Post();
         $this->postRepository = $postRepository;
     }
@@ -28,7 +29,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $query = $this->postRepository->getAllPostWithUser();
+        $query = $this->postRepository->getAllPostWithUserId();
         return PostResource::collection($query);
     }
 
@@ -40,7 +41,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $query = $this->postRepository->createPostWithUserId($request);
+        return json_encode($query);
     }
 
     /**
@@ -51,7 +53,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $query = $this->postRepository->getParticularPost($id);
+        return json_encode($query);
+
     }
 
     /**
@@ -62,8 +66,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {$query = $this->postRepository->updatePost($request,$id);
+        return json_encode($query);
     }
 
     /**
@@ -74,6 +78,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $query = $this->postRepository->deletePost($id);
+        return json_encode($query);
     }
 }

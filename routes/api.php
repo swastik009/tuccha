@@ -17,7 +17,7 @@ Route::post('login', 'PassportController@login');
 Route::post('register', 'PassportController@register');
 Route::get('signup/activate/{token}', 'PassportController@SignUpActivate');
 //Route::get('/redirect/{provider}', 'SocialController@redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
+//Route::get('/callback/{provider}', 'SocialController@callback');
 Route::apiResource('post','PostController');
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'PassportController@details');
