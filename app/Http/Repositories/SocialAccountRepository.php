@@ -46,7 +46,7 @@ class SocialAccountRepository
                 $user = User::create([
                     'name' => $providerUser->getName(),
                     'email' => $providerUser->getEmail(),
-                    'image' => $this->imageUpload->imageUpload($providerUser->getAvatar(), '/img/'),
+                    'image' => $this->imageUpload->uploader($providerUser->getAvatar(), '/img/'),
                     'provider_id' => $providerUser->getId(),
                     'provider_name' => $provider
                 ]);

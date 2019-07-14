@@ -12,12 +12,11 @@ use File;
 
 class ImageUpload
 {
-    public function imageUpload($file, $path = '/img/'){
-
+    public function uploader($file, $path = '/img/'){
         $fileContents = file_get_contents($file);
+        $imageName =  public_path() . $path . date('mdYHis'). ".jpg";
 
-        $imageName =  date('mdYHis'). ".jpg";
-        File::put(public_path() . $path . $imageName, $fileContents);
+        File::put($imageName, $fileContents);
         return $imageName;
     }
 

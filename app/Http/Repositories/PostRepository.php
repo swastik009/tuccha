@@ -13,11 +13,12 @@ use Illuminate\Http\Request;
 
 class PostRepository
 {
-    protected $imageUpload;
+    protected $picUploader;
 
-    public function __construct()
+
+    public function __construct(ImageUpload $imageUpload)
     {
-        $this->picUploader = new ImageUpload();
+        $this->picUploader = $imageUpload;
     }
 
 
@@ -33,18 +34,17 @@ class PostRepository
     }
 
     public function createPostWithUserId(Request $request){
-    echo $request->title;
-    dd();
+
         try {
             Post::create([
                 'title' => $request->title,
                 'description' => $request->description,
-                'cover_pic' => $request->cover_pic,//$this->picUploader->imageUpload(request()->image),
+                'cover_pic' => $this->picUploader->uploader($request->cover_pic),
                 'user_id' => $request->user_id
             ]);
          return 'successfully stored';
-        }catch (\Exception $e){
-            return ($e);
+        }catch (\Illuminate\Database\QueryException $e){
+            return ($e->getMessage());
         }
 
     }
@@ -55,7 +55,7 @@ class PostRepository
             Post::where('id',$id)->update([
                 'title' => $request->title,
                 'description' => $request->description,
-                'cover_pic' => $request->cover_pic,//$this->picUploader->imageUpload($request->image),
+                'cover_pic' => $this->picUploader->uploader($request->cover_pic),
             ]);
             return 'successfully updated';
         }catch (\Illuminate\Database\QueryException $e){
@@ -68,8 +68,8 @@ class PostRepository
         try {
             Post::destroy($id);
             return 'successfully deleted';
-        }catch(\Exception $e){
-            return ($e);
+        }catch (\Illuminate\Database\QueryException $e){
+            return ($e->getMessage());
         }
     }
 

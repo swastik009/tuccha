@@ -11,13 +11,12 @@ class PostController extends Controller
 {
 
 
-    protected $post;
+
     protected $postRepository;
 
     public function __construct(PostRepository $postRepository)
     {
        $this->middleware('auth:api')->only(['store ','update','destroy']);
-        $this->post = new Post();
         $this->postRepository = $postRepository;
     }
 
@@ -66,7 +65,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {$query = $this->postRepository->updatePost($request,$id);
+    {
+        $query = $this->postRepository->updatePost($request,$id);
         return json_encode($query);
     }
 
