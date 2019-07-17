@@ -2,4 +2,4 @@
 deployment:
       tasks:
         - export DEPLOYPATH=/home/subeen/public_html/tuccha
-        - /bin/cp -r * $DEPLOYPATH                        #copy all recursively to $DEPLOYPATH
+        - /bin/cp -r * $DEPLOYPATH
